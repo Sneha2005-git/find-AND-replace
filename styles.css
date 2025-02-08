@@ -1,4 +1,4 @@
-/* Full-page layout */
+
 body {
     font-family: Times New Roman,serif;
     display: flex;
@@ -33,7 +33,7 @@ h2 {
 
 /* Centered box */
 .container {
-    background: rgba(255, 255, 255, 0.9); /* Semi-transparent */
+    background: rgba(255, 255, 255, 0.9); 
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
