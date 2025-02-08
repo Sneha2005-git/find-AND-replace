@@ -6,9 +6,9 @@
 
 
 ### Team Members
-- Member 1: [Name] - [College]
-- Member 2: [Name] - [College]
-- Member 3: [Name] - [College]
+- Member 1: Sneha - SSET
+- Member 2: Zeba - SSET
+- Member 3: Saniya - SSET
 
 ### Hosted Project Link
 [mention your project hosted project link here]
