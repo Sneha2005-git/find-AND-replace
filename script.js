@@ -36,21 +36,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
         for (const page of pages) {
             const { width, height } = page.getSize();
-            const textContent = await extractTextFromPage(page);
+            const textContent = await extractTextFromPage(page);  // 🔥 [MODIFIED]
 
             for (const item of textContent.items) {
                 if (item.str.includes(oldWord)) {
-                    const font = await pdfDoc.embedFont(PDFLib.StandardFonts.Helvetica); // Default font
-                    const bgColor = PDFLib.rgb(1, 1, 1); // White background
+                    const font = await pdfDoc.embedFont(PDFLib.StandardFonts.Helvetica);  // 🔥 [MODIFIED]
+                    const bgColor = PDFLib.rgb(1, 1, 1);  // 🔥 [MODIFIED] - Default white background
 
                     const modifiedText = item.str.replace(new RegExp(oldWord, "g"), newWord);
                     const adjustedWidth = item.width * (newWord.length / oldWord.length);
 
-                    // ✅ Properly erase old text with background color
+                    // ✅ Properly erase old text with a background-colored box
                     page.drawRectangle({
                         x: item.transform[4],
                         y: height - item.transform[5],
-                        width: adjustedWidth,
+                        width: item.width,  // 🔥 [MODIFIED] - Ensures full coverage
                         height: item.height,
                         color: bgColor,
                     });
@@ -70,10 +70,9 @@ document.addEventListener("DOMContentLoaded", () => {
         return await pdfDoc.save();
     }
 
-    async function extractTextFromPage(page) {
+    async function extractTextFromPage(page) {  // 🔥 [NEW FUNCTION]
         try {
-            const textContent = await page.getTextContent();
-            return textContent;
+            return await page.getTextContent();
         } catch {
             console.error("Failed to extract text.");
             return { items: [] };
