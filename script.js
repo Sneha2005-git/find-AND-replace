@@ -19,7 +19,10 @@ document.addEventListener("DOMContentLoaded", () => {
             fileReader.onload = async function () {
                 const pdfBytes = new Uint8Array(fileReader.result);
                 const modifiedPdfBytes = await replaceTextWithoutBreaking(pdfBytes, oldWord, newWord);
-                downloadPdf(modifiedPdfBytes, file.name);
+                
+                // ✅ Convert Uint8Array to Blob properly
+                const blob = new Blob([modifiedPdfBytes], { type: "application/pdf" });
+                downloadPdf(blob, file.name);
             };
         } catch (error) {
             console.error(error);
@@ -33,56 +36,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
         for (const page of pages) {
             const { width, height } = page.getSize();
-            const textContent = await page.getTextContent();
+            const textContent = await extractTextFromPage(page);
 
             for (const item of textContent.items) {
                 if (item.str.includes(oldWord)) {
-                    const font = await extractFont(pdfDoc, item.fontName);  // Extracts original font
-                    const bgColor = await detectBackgroundColor(page, item);  // Matches background color
+                    const font = await pdfDoc.embedFont(PDFLib.StandardFonts.Helvetica); // Default font
+                    const bgColor = PDFLib.rgb(1, 1, 1); // White background
 
                     const modifiedText = item.str.replace(new RegExp(oldWord, "g"), newWord);
                     const adjustedWidth = item.width * (newWord.length / oldWord.length);
 
-                    // Draw a background-colored box to erase old text
+                    // ✅ Properly erase old text with background color
                     page.drawRectangle({
                         x: item.transform[4],
                         y: height - item.transform[5],
                         width: adjustedWidth,
                         height: item.height,
-                        color: bgColor,  // Uses detected background color
+                        color: bgColor,
                     });
 
-                    // Draw new text using extracted font
+                    // ✅ Draw new text in the same position
                     page.drawText(modifiedText, {
                         x: item.transform[4],
                         y: height - item.transform[5],
                         font,
-                        size: item.height,  // Keeps original font size
-                        color: PDFLib.rgb(0, 0, 0),  // Default black text
+                        size: item.height,
+                        color: PDFLib.rgb(0, 0, 0),
                     });
                 }
             }
         }
 
-        return pdfDoc.save();
+        return await pdfDoc.save();
     }
 
-    async function extractFont(pdfDoc, fontName) {
+    async function extractTextFromPage(page) {
         try {
-            return await pdfDoc.embedFont(fontName);
+            const textContent = await page.getTextContent();
+            return textContent;
         } catch {
-            return await pdfDoc.embedFont(PDFLib.StandardFonts.Helvetica);  // Default fallback
+            console.error("Failed to extract text.");
+            return { items: [] };
         }
     }
 
-    async function detectBackgroundColor(page, item) {
-        // This function should analyze the area around the text to find the background color
-        // For now, assume white, but future enhancement can detect exact color.
-        return PDFLib.rgb(1, 1, 1);  // Default to white
-    }
-
-    function downloadPdf(pdfBytes, fileName) {
-        const blob = new Blob([pdfBytes], { type: "application/pdf" });
+    function downloadPdf(blob, fileName) {
         const link = document.createElement("a");
         link.href = URL.createObjectURL(blob);
         link.download = fileName.replace(".pdf", "_modified.pdf");

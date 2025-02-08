@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find & Replace</title>
+    <title>Find & Replace in PDF</title>
     <link rel="stylesheet" href="styles.css">
+
+    <!-- PDF Processing Libraries -->
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
 </head>
 <body>
-    
-    <!-- Title & Description outside the box -->
+
     <header>
         <h2>PDF Word Replacer</h2>
-        <p>Upload  PDF, replace words, and download the updated file!</p>
+        <p>Upload a PDF, replace words, and download the updated file!</p>
     </header>
 
-    <!-- Center-aligned container -->
     <div class="container">
         <input type="file" id="fileInput" accept="application/pdf">
 
@@ -27,7 +29,7 @@
         <button id="replaceBtn">Replace & Download</button>
     </div>
 
-    <script src="pdf-lib.min.js"></script>
     <script src="script.js"></script>
+
 </body>
 </html>

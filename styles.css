@@ -1,6 +1,6 @@
 /* Full-page layout */
 body {
-    font-family: Arial, sans-serif;
+    font-family: Times New Roman,serif;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,21 +8,25 @@ body {
     height: 100vh;
     margin: 0;
     text-align: center;
-    background-image: url('background.jpg'); /* Use relative path */
-    background-size: cover;
-    background-position: center;
 }
 
-
+/* Header Styling */
 header {
-    background: rgba(255, 255, 255, 0.8);
+    background: #7fceed
+    (114, 235, 251, 0.8);
     padding: 15px;
     border-radius: 10px;
     margin-bottom: 20px;
 }
+p {
+    font-size: 20px; 
+    color: #333; 
+    font-weight: normal; 
+    margin-bottom: 15px; 
+}
 
 h2 {
-    font-size: 24px;
+    font-size: 50px;
     font-weight: bold;
     color: #007BFF;
 }
@@ -33,7 +37,7 @@ h2 {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    width: 320px;
 }
 
 /* Input & Button Styling */
@@ -62,7 +66,7 @@ button:hover {
 
 /* Label Styling */
 label {
-    font-size: 14px;
+    font-size: 20px;
     font-weight: bold;
     display: block;
     margin-top: 10px;
