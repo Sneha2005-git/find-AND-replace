@@ -3,16 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>find AND replace</title>
+    <title>Find & Replace</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h2>PDF Word Replacer</h2>
+    
+    <!-- Title & Description outside the box -->
+    <header>
+        <h2>PDF Word Replacer</h2>
+        <p>Enter the word you want to replace, and download the updated file!</p>
+    </header>
 
     <!-- Center-aligned container -->
     <div class="container">
         <input type="file" id="fileInput" accept="application/pdf">
-        <input type="text" id="oldWord" placeholder="Word to replace">
+        <label for="replace with word">replace this word:</label>
+        <input type="text" id="oldWord" placeholder="old word">
+        <label for="with">with:</label>
         <input type="text" id="newWord" placeholder="New word">
         <button id="replaceBtn">Replace & Download</button>
     </div>
