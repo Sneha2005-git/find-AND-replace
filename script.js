@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const pdfBytes = new Uint8Array(fileReader.result);
                 const modifiedPdfBytes = await replaceTextWithoutBreaking(pdfBytes, oldWord, newWord);
                 
-                // ✅ Convert Uint8Array to Blob properly
+                
                 const blob = new Blob([modifiedPdfBytes], { type: "application/pdf" });
                 downloadPdf(blob, file.name);
             };
