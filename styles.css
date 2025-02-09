@@ -1,6 +1,6 @@
-
+/* Full-page layout */
 body {
-    font-family: Times New Roman,serif;
+    font-family: "Times New Roman", serif;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,56 +8,75 @@ body {
     height: 100vh;
     margin: 0;
     text-align: center;
+    background-color: #f4f4f4; /* Light background for better visibility */
+    background-image: url("Light-Blue-Abstract-Webpage-Background-Graphics-1.jpg"); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
-
+/* Header Styling */
 header {
-    background: #7fceed
-    (114, 235, 251, 0.8);
+    background: rgba(114, 235, 251, 0.8); /* Fixed background color */
     padding: 15px;
     border-radius: 10px;
     margin-bottom: 20px;
-}
-p {
-    font-size: 20px; 
-    color: #333; 
-    font-weight: normal; 
-    margin-bottom: 15px; 
+    width: 100%;
+    max-width: 600px;
 }
 
+/* Paragraph Styling */
+p {
+    font-size: 20px;
+    color: #333;
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+
+/* Heading Styling */
 h2 {
     font-size: 50px;
     font-weight: bold;
-    color: #007BFF;
+    color: #1331c6;
+    margin: 0;
 }
 
-/* Centered box */
+/* Centered Box */
 .container {
-    background: rgba(255, 255, 255, 0.9); 
+    background: rgba(255, 255, 255, 0.3); /* More transparency for better blending */
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px; /* Softer rounded corners */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Soft diffused shadow */
     width: 320px;
+    margin-right: 20px; /* Added space on the right */
+    backdrop-filter: blur(15px); /* Stronger blur for a glassy effect */
+    -webkit-backdrop-filter: blur(15px); /* Ensures compatibility */
+    border: 1px solid rgba(255, 255, 255, 0.4); /* Light border to blend edges */
 }
+
+
+
 
 /* Input & Button Styling */
 input, button {
     display: block;
-    width: 100%;
-    margin: 10px 0;
+    width: 90%;
+    margin: 10px auto;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
 }
 
-/* Button Styling */
+
 button {
     background-color: #007BFF;
     color: white;
     cursor: pointer;
     border: none;
-    transition: 0.3s;
+    transition: background-color 0.3s ease-in-out;
+    font-weight: bold;
 }
 
 button:hover {
@@ -66,7 +85,7 @@ button:hover {
 
 /* Label Styling */
 label {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     display: block;
     margin-top: 10px;
