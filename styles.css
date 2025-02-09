@@ -42,6 +42,14 @@ h2 {
     margin: 0;
 }
 
+/* Heading Styling */
+h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #4458bd;
+    margin: 0;
+}
+
 /* Centered Box */
 .container {
     background: rgba(255, 255, 255, 0.3); /* More transparency for better blending */
